@@ -1,1 +1,1 @@
-# python_tempalte
+# salad_detection
