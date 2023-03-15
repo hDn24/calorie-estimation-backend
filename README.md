@@ -1,4 +1,4 @@
-# Python project template
+# Salad detection
 
 Supports:
 
