@@ -31,9 +31,9 @@ with open("LICENSE") as f:
 setup(
     name="salad_detection",
     version="0.1",
-    description="Python project template",
+    description="salad detection",
     long_description=readme,
-    author="vuhuutiep@gmail.com",
+    author="hodangnhan24@gmail.com",
     author_email="",
     url="https://github.com/hDn24/salad_detection",
     python_requires=">=3.8",
