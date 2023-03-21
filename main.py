@@ -8,7 +8,7 @@ from flask_cors import CORS
 from PIL import Image
 
 import utils
-from detect import ObjectDetector, ObjectDetectorOptions
+from detect_lightning import ObjectDetector, ObjectDetectorOptions
 
 app = Flask(__name__)
 CORS(app)
@@ -65,4 +65,6 @@ def detect():
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    # app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)

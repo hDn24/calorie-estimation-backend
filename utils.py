@@ -3,7 +3,7 @@ from typing import List
 import cv2
 import numpy as np
 
-from detect import Detection
+from detect_lightning import Detection
 
 # Visualize parameter
 _MARGIN = 10  # pixels
