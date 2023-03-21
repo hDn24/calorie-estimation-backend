@@ -110,11 +110,11 @@ class FoodDetector:
         if options.enable_edgetpu:
             if edgetpu_lib_name() is None:
                 raise OSError("The current OS isn't supported by Coral EdgeTPU.")
-            interpreter = Interpreter(
-                model_path=model_path,
-                experimental_delegates=[load_delegate(edgetpu_lib_name())],
-                num_threads=options.num_threads,
-            )
+            # interpreter = Interpreter(
+            #     model_path=model_path,
+            #     experimental_delegates=[load_delegate(edgetpu_lib_name())],
+            #     num_threads=options.num_threads,
+            # )
         else:
             interpreter = Interpreter(
                 model_path=model_path, num_threads=options.num_threads
