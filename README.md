@@ -24,3 +24,8 @@ Supports:
 ## Run API
 
 - `python main.py`
+
+## Docker
+- `docker build --tag hdn24/food-detection .`
+- `docker run --rm -it -p 5001:5000 hdn24/food-detection:latest`
+- Open `http://localhost:5001/` to check api
