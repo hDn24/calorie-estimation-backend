@@ -7,8 +7,8 @@ from flask import Flask, Response, request
 from flask_cors import CORS
 from PIL import Image
 
-import utils
-from food_detector import FoodDetector, FoodDetectorOptions
+from ml.food_detector import FoodDetector, FoodDetectorOptions
+from utils import utils
 
 app = Flask(__name__)
 CORS(app)
@@ -21,7 +21,7 @@ options = FoodDetectorOptions(
     num_threads=_NUM_THREADS,
     score_threshold=_DETECTION_THRESHOLD,
 )
-detector = FoodDetector(model_path="salad_model.tflite", options=options)
+detector = FoodDetector(model_path="./assets/salad_model.tflite", options=options)
 
 
 @app.route("/")
