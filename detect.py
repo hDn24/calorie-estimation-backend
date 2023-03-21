@@ -11,7 +11,7 @@ Interpreter = tf.lite.Interpreter
 load_delegate = tf.lite.experimental.load_delegate
 
 
-class ObjectDetectorOptions(NamedTuple):
+class FoodDetectorOptions(NamedTuple):
     """A config to initialize an object detector."""
 
     enable_edgetpu: bool = False
@@ -51,7 +51,7 @@ class Category(NamedTuple):
 
 
 class Detection(NamedTuple):
-    """A detected object as the result of an ObjectDetector."""
+    """A detected object as the result of an FoodDetector."""
 
     bounding_box: Rect
     categories: List[Category]
@@ -66,7 +66,7 @@ def edgetpu_lib_name():
     }.get(platform.system(), None)
 
 
-class ObjectDetector:
+class FoodDetector:
     """A wrapper class for a TFLite object detection model."""
 
     _OUTPUT_LOCATION_NAME = "location"
@@ -75,7 +75,7 @@ class ObjectDetector:
     _OUTPUT_NUMBER_NAME = "number of detections"
 
     def __init__(
-        self, model_path: str, options: ObjectDetectorOptions = ObjectDetectorOptions()
+        self, model_path: str, options: FoodDetectorOptions = FoodDetectorOptions()
     ) -> None:
         """Initialize a TFLite object detection model.
         Args:
