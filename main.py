@@ -8,7 +8,7 @@ from flask_cors import CORS
 from PIL import Image
 
 import utils
-from detect import ObjectDetector, ObjectDetectorOptions
+from food_detector import FoodDetector, FoodDetectorOptions
 
 app = Flask(__name__)
 CORS(app)
@@ -17,11 +17,11 @@ _DETECTION_THRESHOLD = 0.3
 _NUM_THREADS = 4
 
 # Load the TFLite model
-options = ObjectDetectorOptions(
+options = FoodDetectorOptions(
     num_threads=_NUM_THREADS,
     score_threshold=_DETECTION_THRESHOLD,
 )
-detector = ObjectDetector(model_path="salad_model.tflite", options=options)
+detector = FoodDetector(model_path="salad_model.tflite", options=options)
 
 
 @app.route("/")
@@ -65,4 +65,6 @@ def detect():
 
 
 if __name__ == "__main__":
-    app.run(port=5001, debug=True)
+    # app.run(port=5001, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True, host="0.0.0.0", port=port)
