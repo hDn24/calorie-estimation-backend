@@ -3,7 +3,7 @@ from typing import List
 import cv2
 import numpy as np
 
-from food_detector import Detection
+from ml.food_detector import Detection
 
 # Visualize parameter
 _MARGIN = 10  # pixels

@@ -5,7 +5,7 @@ Supports:
 - [x] Check CI with github actions
 - [x] flake8, mypy, precommit
 
-# How to start `pre-commit`
+## How to start `pre-commit`
 
 ```
 pre-commit install
@@ -14,9 +14,9 @@ pre-commit install
 pre-commit run --all-files
 ```
 
-# How to start API
+## How to start API
 
-## Create virtual environment:
+### Create virtual environment:
 
 ```
 virtualenv env
@@ -25,13 +25,13 @@ virtualenv env
 source env/bin/activate
 ```
 
-## Install the required libs
+### Install the required libs
 
 ```
 pip install -r requirements.txt
 ```
 
-## Run API
+### Run API
 
 ```
 python main.py
