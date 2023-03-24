@@ -25,7 +25,7 @@ detector = FoodDetector(model_path="./assets/salad_model.tflite", options=option
 
 
 @app.route("/")
-def main():
+def root():
     response = Response("Health check", mimetype="text/plain")
     return response
 

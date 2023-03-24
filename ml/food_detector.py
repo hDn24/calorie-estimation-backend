@@ -190,13 +190,13 @@ class FoodDetector:
 
         return input_tensor
 
-    def _set_input_tensor(self, image):
+    def _set_input_tensor(self, image) -> None:
         """Sets the input tensor."""
         tensor_index = self._interpreter.get_input_details()[0]["index"]
         input_tensor = self._interpreter.tensor(tensor_index)()[0]
         input_tensor[:, :] = image
 
-    def _get_output_tensor(self, name):
+    def _get_output_tensor(self, name) -> np.ndarray:
         """Returns the output tensor at the given index."""
         output_index = self._output_indices[name]
         tensor = np.squeeze(self._interpreter.get_tensor(output_index))
