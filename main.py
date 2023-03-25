@@ -25,13 +25,15 @@ detector = FoodDetector(model_path="./assets/salad_model.tflite", options=option
 
 
 @app.route("/")
-def root():
+def root() -> Response:
+    """Health check api"""
     response = Response("Health check", mimetype="text/plain")
     return response
 
 
 @app.route("/detect", methods=["POST"])
-def detect():
+def detect() -> dict:
+    """Detect api"""
     if "file[]" not in request.files:
         return "Error"
     files = request.files.getlist("file[]")
