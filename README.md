@@ -19,23 +19,23 @@ pre-commit run --all-files
 
 ### Create virtual environment:
 
-```
+```shell
 virtualenv env
 ```
 
-```
+```shell
 source env/bin/activate
 ```
 
 ### Install the required libs
 
-```
+```shell
 pip install -r requirements.txt
 ```
 
 ### Run API
 
-```
+```shell
 python main.py
 ```
 
