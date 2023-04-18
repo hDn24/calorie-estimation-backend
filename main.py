@@ -6,6 +6,7 @@ import numpy as np
 from flask import Flask, Response, request
 from flask_cors import CORS
 from PIL import Image
+from app.api import detection
 
 from ml.food_detector import FoodDetector, FoodDetectorOptions
 from utils import utils
@@ -38,32 +39,36 @@ def detect() -> dict:
         return "Error"
     files = request.files.getlist("file[]")
 
-    output_folder = "static"
-    response = []
-    if not os.path.isdir(output_folder):
-        os.makedirs(output_folder)
-
-    for file_name in files:
-        image = Image.open(file_name)
-        tensor_image = np.asarray(image)
-
-        # Run object detection using the model.
-        detections = detector.detect(tensor_image)
-
-        # Draws bounding boxes on the input image
-        output_image = utils.visualize(tensor_image, detections)
-
-        # Convert to RGB
-        output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
-
-        # Save output image
-        output_image_name = f"{str(uuid.uuid4())}.png"
-        output_image_path = output_folder + "/" + output_image_name
-        cv2.imwrite(output_image_path, output_image)
-
-        response.append(output_image_path)
+    response = detection(files, detector)
 
     return {"paths": response}
+
+    # output_folder = "static"
+    # response = []
+    # if not os.path.isdir(output_folder):
+    #     os.makedirs(output_folder)
+
+    # for file_name in files:
+    #     image = Image.open(file_name)
+    #     tensor_image = np.asarray(image)
+
+    #     # Run object detection using the model.
+    #     detections = detector.detect(tensor_image)
+
+    #     # Draws bounding boxes on the input image
+    #     output_image = utils.visualize(tensor_image, detections)
+
+    #     # Convert to RGB
+    #     output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
+
+    #     # Save output image
+    #     output_image_name = f"{str(uuid.uuid4())}.png"
+    #     output_image_path = output_folder + "/" + output_image_name
+    #     cv2.imwrite(output_image_path, output_image)
+
+    #     response.append(output_image_path)
+
+    # return {"paths": response}
 
 
 if __name__ == "__main__":
