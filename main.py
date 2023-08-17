@@ -6,8 +6,8 @@ import numpy as np
 from flask import Flask, Response, request
 from flask_cors import CORS
 from PIL import Image
-from app.api import detection
 
+from app.api import detection
 from ml.food_detector import FoodDetector, FoodDetectorOptions
 from utils import utils
 
