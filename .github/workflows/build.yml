@@ -37,13 +37,6 @@ jobs:
       - name: black
         uses: psf/black@stable
 
-      # - name: isort
-      #   # Pinned to v2.0.0.
-      #   uses: isort/isort-action@v1.1.0
-      #   with:
-      #     run: |
-      #       isort . --profile=black --multi_line_output=24
-
   isort:
     runs-on: ubuntu-latest
     steps:
