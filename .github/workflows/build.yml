@@ -13,7 +13,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  black:
     runs-on: ubuntu-latest
 
     steps:
@@ -53,11 +53,3 @@ jobs:
         with:
           run: |
             isort . --profile=black --multi_line_output=24
-
-  # black:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout
-  #       uses: actions/checkout@v3
-  #     - name: black
-  #       uses: psf/black@stable
