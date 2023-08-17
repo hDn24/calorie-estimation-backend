@@ -44,6 +44,24 @@ jobs:
       - name: black
         uses: psf/black@stable
 
+  # isort:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v4
+  #       with:
+  #         python-version: "3.8"
+  #     - run: python -m pip install isort
+  #     - name: isort
+  #       # Pinned to v2.0.0.
+  #       uses: liskin/gh-problem-matcher-wrap@d8afa2cfb66dd3f982b1950429e652bc14d0d7d2
+  #       with:
+  #         linters: isort
+  #         run: isort
+
+
   isort:
     runs-on: ubuntu-latest
     steps:
@@ -56,10 +74,10 @@ jobs:
       - run: python -m pip install isort
       - name: isort
         # Pinned to v2.0.0.
-        uses: liskin/gh-problem-matcher-wrap@d8afa2cfb66dd3f982b1950429e652bc14d0d7d2
+        uses: isort/isort-action@v1.1.0
         with:
-          linters: isort
-          run: isort
+          run: |
+            isort . --profile=black --multi_line_output=24
 
   # black:
   #   runs-on: ubuntu-latest
