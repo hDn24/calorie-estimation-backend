@@ -7,7 +7,7 @@ from flask import Flask, Response, request
 from flask_cors import CORS
 from PIL import Image
 
-from app.api import detection
+from app.api import detect
 from ml.food_detector import FoodDetector, FoodDetectorOptions
 from utils import utils
 
@@ -33,13 +33,13 @@ def root() -> Response:
 
 
 @app.route("/detect", methods=["POST"])
-def detect() -> dict:
+def detection() -> dict:
     """Detect api"""
     if "file[]" not in request.files:
         return "Error"
     files = request.files.getlist("file[]")
 
-    response = detection(files, detector)
+    response = detect(files, detector)
 
     return {"paths": response}
 

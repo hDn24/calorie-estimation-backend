@@ -8,7 +8,17 @@ from PIL import Image
 from utils import utils
 
 
-def detection(files, detector):
+def detect(files, detector):
+    """
+    Perform object detection on the input files using the provided detector.
+
+    Args:
+        files: A list of file paths to the input images.
+        detector: An object representing the detector model.
+
+    Returns:
+        A list of paths to the output images generated after object detection.
+    """
     output_folder = "static"
     response = []
     if not os.path.isdir(output_folder):
