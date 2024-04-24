@@ -136,3 +136,4 @@ coverage.code-workspace
 .vscode/
 
 *.DS_Store
+static/
