@@ -44,7 +44,7 @@ $ cp .env.example .env
 *Build and run the docker image*
 
 ```shell
-$ docker-compose up -d
+$ make app
 ```
 
 ### API docs
