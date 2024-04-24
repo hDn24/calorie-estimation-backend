@@ -1,18 +1,20 @@
-import os
-import uuid
+from fastapi import FastAPI, File
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 
-import cv2
-import numpy as np
-from flask import Flask, Response, request
-from flask_cors import CORS
-from PIL import Image
-
-from app.api import detect
+from app.detector import detect
 from ml.food_detector import FoodDetector, FoodDetectorOptions
-from utils import utils
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI(title="Calorie estimation")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+    expose_headers=["*"],
+)
 
 _DETECTION_THRESHOLD = 0.3
 _NUM_THREADS = 4
@@ -25,53 +27,29 @@ options = FoodDetectorOptions(
 detector = FoodDetector(model_path="./assets/salad_model.tflite", options=options)
 
 
-@app.route("/")
-def root() -> Response:
+@app.get("/")
+def root() -> JSONResponse:
     """Health check api"""
-    response = Response("Health check", mimetype="text/plain")
-    return response
+    return JSONResponse({"message": "Health check"})
 
 
-@app.route("/detect", methods=["POST"])
-def detection() -> dict:
-    """Detect api"""
-    if "file[]" not in request.files:
-        return "Error"
-    files = request.files.getlist("file[]")
+@app.post("/detect")
+def detection(file: bytes = File()) -> dict:
+    """
+    Endpoint for detecting objects in an image.
 
-    response = detect(files, detector)
+    Args:
+        file: The image file to be processed.
+
+    Returns:
+        A dictionary containing the paths of the output images generated after object detection.
+    """
+    response = detect([file], detector)
 
     return {"paths": response}
 
-    # output_folder = "static"
-    # response = []
-    # if not os.path.isdir(output_folder):
-    #     os.makedirs(output_folder)
-
-    # for file_name in files:
-    #     image = Image.open(file_name)
-    #     tensor_image = np.asarray(image)
-
-    #     # Run object detection using the model.
-    #     detections = detector.detect(tensor_image)
-
-    #     # Draws bounding boxes on the input image
-    #     output_image = utils.visualize(tensor_image, detections)
-
-    #     # Convert to RGB
-    #     output_image = cv2.cvtColor(output_image, cv2.COLOR_BGR2RGB)
-
-    #     # Save output image
-    #     output_image_name = f"{str(uuid.uuid4())}.png"
-    #     output_image_path = output_folder + "/" + output_image_name
-    #     cv2.imwrite(output_image_path, output_image)
-
-    #     response.append(output_image_path)
-
-    # return {"paths": response}
-
 
 if __name__ == "__main__":
-    # app.run(port=5001, debug=True)
-    port = int(os.environ.get("PORT", 5000))
-    app.run(debug=True, host="0.0.0.0", port=port)
+    import uvicorn
+
+    uvicorn.run(app, host="0.0.0.0", port=8000)
