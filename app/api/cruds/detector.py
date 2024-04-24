@@ -7,8 +7,8 @@ import cv2
 import numpy as np
 from PIL import Image
 
-from ml.food_detector import FoodDetector
-from utils import utils
+from app.api.utils import utils
+from app.ml.food_detector import FoodDetector
 
 
 def detect(files: List[bytes], detector: FoodDetector) -> List[str]:
