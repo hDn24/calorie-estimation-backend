@@ -1,0 +1,17 @@
+version: '3'
+services:
+  backend:
+    image: calorie-estimation:latest
+    restart: always
+    build: .
+    volumes:
+      - ./app/:/code/app/
+      - ./app/assets:/code/app/assets
+    env_file:
+      - .env
+    ports:
+      - 8000:8000
+    platform: linux/amd64
+
+volumes:
+  backend-data:
