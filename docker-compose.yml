@@ -12,6 +12,3 @@ services:
     ports:
       - 8000:8000
     platform: linux/amd64
-
-volumes:
-  app-data:
