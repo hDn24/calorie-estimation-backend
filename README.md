@@ -24,11 +24,11 @@ _Supports_:
 *for check coding conventions*
 
 ```shell
-pre-commit install
+$ pre-commit install
 ```
 
 ```shell
-pre-commit run --all-files
+$ pre-commit run --all-files
 ```
 
 ### Build & run
@@ -37,22 +37,16 @@ pre-commit run --all-files
 *Make your own `.env` file from the example:*
 
 ```shell
-cp .env.example .env
+$ cp .env.example .env
 # update values
 ```
 
-*Build a docker image*
+*Build and run the docker image*
 
 ```shell
-docker build --tag hdn24/calorie-estimation .
-```
-
-*Run docker container*
-
-```shell
-docker run --rm -it -p 8001:8000 hdn24/calorie-estimation:latest
+$ docker-compose up -d
 ```
 
 ### API docs
 
-*Open `http://localhost:8001/docs` for API docs*
+*Now, you can view the API docs via `http://localhost:8001/docs`*
