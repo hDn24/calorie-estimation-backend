@@ -62,13 +62,9 @@ docker build --tag hdn24/calorie-estimation .
 ```
 
 ```
-docker run --rm -it -p 5001:5000 hdn24/calorie-estimation:latest
+docker run --rm -it -p 8001:8000 hdn24/calorie-estimation:latest
 ```
 
 ### API docs
 
-- Open `http://localhost:5001/` to check api
-  - GET: `http://localhost:5001/` Health check api
-  - POST: `http://localhost:5001/detect` Detect api
-    - key: file[] (type: `file`)
-    - value: Choose a file from local
+*Open `http://localhost:8001/docs` for API docs*
