@@ -1,21 +1,34 @@
 import os
 import uuid
+from io import BytesIO
+from typing import List
 
 import cv2
 import numpy as np
 from PIL import Image
 
+from ml.food_detector import FoodDetector
 from utils import utils
 
 
-def detection(files, detector):
+def detect(files: List[bytes], detector: FoodDetector) -> List[str]:
+    """
+    Perform object detection on the input files using the provided detector.
+
+    Args:
+        files: A list of file paths to the input images.
+        detector: An object representing the detector model.
+
+    Returns:
+        A list of paths to the output images generated after object detection.
+    """
     output_folder = "static"
     response = []
     if not os.path.isdir(output_folder):
         os.makedirs(output_folder)
 
     for file_name in files:
-        image = Image.open(file_name)
+        image = Image.open(BytesIO(file_name))
         tensor_image = np.asarray(image)
 
         # Run object detection using the model.
