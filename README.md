@@ -20,6 +20,12 @@ _Supports_:
 
 ## Install (for development)
 
+
+### Clone the project
+```
+$ git clone git@github.com:hDn24/calorie-estimation-backend.git
+```
+
 ### Run `pre-commit`
 *for check coding conventions*
 
