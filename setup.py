@@ -29,13 +29,13 @@ with open("LICENSE") as f:
     license = f.read()
 
 setup(
-    name="salad_detection",
+    name="calorie-estimation",
     version="0.1",
-    description="salad detection",
+    description="calorie estimation",
     long_description=readme,
     author="hodangnhan24@gmail.com",
     author_email="",
-    url="https://github.com/hDn24/salad_detection",
+    url="https://github.com/hDn24/calorie-estimation-backend",
     python_requires=">=3.8",
     license=license,
     packages=find_namespace_packages(exclude=("tests", "docs")),

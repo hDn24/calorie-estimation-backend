@@ -14,57 +14,45 @@ _Supports_:
 
 ## Libraries
 
-- [flask](https://flask.palletsprojects.com/en/2.2.x/) `2.2.3`
-- [tflite-runtime](https://pypi.org/project/tflite-runtime/) `2.7.0`
-- [tflite-support](https://pypi.org/project/tflite-support/) `0.4.3`
+- [*fastapi*](https://fastapi.tiangolo.com/) `0.109.1`
+- [*tflite-runtime*](https://pypi.org/project/tflite-runtime/) `2.7.0`
+- [*tflite-support*](https://pypi.org/project/tflite-support/) `0.4.3`
 
 ## Install (for development)
 
+
 ### Clone the project
-
-```shell
-git clone git@github.com:hDn24/calorie-estimation-backend.git
 ```
-
-### Install the requirements and make environment
-
-_Create virtual environment_
-
-```shell
-virtualenv env
-```
-
-```shell
-source env/bin/activate
-```
-
-_Install the requirements_
-
-```shell
-cd calorie-estimation-backend
-pip install -r requirements.txt
+$ git clone git@github.com:hDn24/calorie-estimation-backend.git
 ```
 
 ### Run `pre-commit`
+*for check coding conventions*
 
 ```shell
-pre-commit install
+$ pre-commit install
 ```
 
 ```shell
-pre-commit run --all-files
+$ pre-commit run --all-files
 ```
 
-### Start server
+### Build & run
+
+
+*Make your own `.env` file from the example:*
 
 ```shell
-docker build --tag hdn24/calorie-estimation .
+$ cp .env.example .env
+# update values
 ```
 
-```
-docker run --rm -it -p 8001:8000 hdn24/calorie-estimation:latest
+*Build and run the docker image*
+
+```shell
+$ make app
 ```
 
 ### API docs
 
-*Open `http://localhost:8001/docs` for API docs*
+*Now, you can view the API docs via `http://localhost:8001/docs`*
