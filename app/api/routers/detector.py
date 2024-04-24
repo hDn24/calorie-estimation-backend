@@ -1,7 +1,7 @@
 from fastapi import APIRouter, File
 from fastapi.responses import JSONResponse
 
-from app.api.cruds import detect as crud
+from app.api.cruds import detector as crud
 from app.configs import CFG
 from app.ml.food_detector import FoodDetector, FoodDetectorOptions
 
