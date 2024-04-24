@@ -1,6 +1,6 @@
 version: '3'
 services:
-  backend:
+  app:
     image: calorie-estimation:latest
     restart: always
     build: .
@@ -14,4 +14,4 @@ services:
     platform: linux/amd64
 
 volumes:
-  backend-data:
+  app-data:
