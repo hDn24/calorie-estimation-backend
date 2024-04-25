@@ -55,4 +55,4 @@ $ make app
 
 ### API docs
 
-*Now, you can view the API docs via `http://localhost:8001/docs`*
+*Now, you can view the API docs via `http://localhost:8000/docs`*
